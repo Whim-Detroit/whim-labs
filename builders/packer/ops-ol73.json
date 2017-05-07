@@ -1,0 +1,95 @@
+{
+  "builders": [
+    {
+      "source_path": "../../artifacts/base-headless-ol73/base-headless-ol73.ovf",
+      "output_directory": "packer-{{user `template`}}-virtualbox",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-ovf",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"],
+        ["modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{ user `template` }}"
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "builds/{{user `box_basename`}}.{{.Provider}}.box",
+      "type": "vagrant"
+    },
+    {
+      "inline": [
+          "mkdir -p ./builds",
+          "cp ./bin/*.sh ./builds",
+          "cd builds", 
+          "./box2ovf.sh ops_ol73.virtualbox.box ",
+          "rm *.sh",
+          "mkdir -p  ../../../artifacts/{{user `box_basename`}}",
+          "cp * ../../../artifacts/{{user `box_basename`}}",
+          "cd ..",
+          "rm -rf builds packer*virtualbox"],
+      "type": "shell-local"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": ["mkdir -p /tmp/scripts/oracle/7.3"],
+      "type": "shell"
+    },
+    {
+      "destination": "/tmp/scripts/oracle/7.3",
+      "source": "../../provisioners/scripts/oracle/7.3/",
+      "type": "file"
+    },
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "scripts": [
+        "../../provisioners/scripts/oracle/7.3/install_ol73_apache_ant.sh",
+        "../../provisioners/scripts/oracle/7.3//install_ol73_apache_maven.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_gradle.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_docker.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_ansible.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_golang.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_python3.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_consul.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_packer.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_terraform.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_vault.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_git.sh",
+        "../../submodules/bento/scripts/common/minimize.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "inline": [
+        "sudo usermod -aG vboxsf vagrant",
+        "sudo plymouth-set-default-theme details",
+        "sudo dracut -f"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "arch": "64",
+    "box_basename": "ops_ol73",
+    "cpus": "1",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "memory": "4096",
+    "name": "ops-ol73",
+    "no_proxy": "{{env `no_proxy`}}",
+    "template": "ops-ol73",
+    "version": "2.2.TIMESTAMP"
+  }
+}

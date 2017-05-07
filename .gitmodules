@@ -1,3 +1,6 @@
 [submodule "submodules/bento"]
 	path = submodules/bento
 	url = https://github.com/chef/bento
+[submodule "submodules/dcos-vagrant"]
+	path = submodules/dcos-vagrant
+	url = https://github.com/dcos/dcos-vagrant

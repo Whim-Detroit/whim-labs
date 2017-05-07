@@ -23,7 +23,7 @@ opc_cli_binary="opc-cli-1.1.0.zip"
 
 # retrieve and install the opc-cli from the oracle cloud (local if needed).
 #wget --no-verbose --load-cookies=cookies.txt --no-check-certificate http://download.oracle.com/otn/java/cloud-service/${opc_cli_binary}
-cp -f /tmp/scripts/oracle/tools/${opc_cli_binary} .
+cp -f /tmp/scripts/oracle/7.3/tools/${opc_cli_binary} .
 chmod 644 ${opc_cli_binary}
 unzip ${opc_cli_binary}
 easy_install python-dateutil

@@ -86,9 +86,9 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "memory": "4096",
-    "name": "ops-ol73",
+    "name": "cicd-ol73",
     "no_proxy": "{{env `no_proxy`}}",
-    "template": "ops-ol73",
+    "template": "cicd-ol73",
     "version": "2.2.TIMESTAMP"
   }
 }

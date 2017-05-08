@@ -102,8 +102,8 @@
       "pause_before": "10s",
       "scripts": [
         "../../submodules/bento/scripts/common/virtualbox.sh",
-        "../../submodules/bento/scripts/common/minimize.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_docker.sh",
+        "../../submodules/bento/scripts/common/minimize.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_cleanup.sh"
       ],
       "type": "shell"

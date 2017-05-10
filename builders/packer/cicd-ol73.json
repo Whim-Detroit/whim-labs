@@ -65,7 +65,6 @@
         "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_packer.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_terraform.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_vault.sh",
-        "../../provisioners/scripts/oracle/7.3/install_ol73_cloud_init.sh",
         "../../submodules/bento/scripts/common/minimize.sh"
       ],
       "type": "shell"

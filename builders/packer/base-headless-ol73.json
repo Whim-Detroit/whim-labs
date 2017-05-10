@@ -81,7 +81,6 @@
         "../../provisioners/scripts/oracle/7.3/install_ol73_headless_devops_tools.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_headless_users_env.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_oracle_java_jdk.sh",
-        "../../provisioners/scripts/oracle/7.3/install_ol73_cloud_init.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_python3.sh"
       ],
       "type": "shell"

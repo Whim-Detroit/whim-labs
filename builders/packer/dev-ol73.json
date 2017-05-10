@@ -71,6 +71,7 @@
         "../../provisioners/scripts/oracle/7.3/install_ol73_spring_tool_suite_eclipse_ide.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_sublime_editor.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_microsoft_visual_studio_code_editor.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_bosh_cli.sh",
         "../../submodules/bento/scripts/common/minimize.sh"
       ],
       "type": "shell"

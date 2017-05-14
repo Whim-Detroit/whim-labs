@@ -55,16 +55,15 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "scripts": [
+        "../../provisioners/scripts/oracle/7.3/install_ol73_docker.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_gitlab.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_jenkins.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_apache_ant.sh",
         "../../provisioners/scripts/oracle/7.3//install_ol73_apache_maven.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_gradle.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_ansible.sh",
-        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_consul.sh",
-        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_packer.sh",
         "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_terraform.sh",
-        "../../provisioners/scripts/oracle/7.3/install_ol73_hashicorp_vault.sh",
+        "../../provisioners/scripts/oracle/7.3/install_ol73_golang.sh",
         "../../submodules/bento/scripts/common/minimize.sh"
       ],
       "type": "shell"
